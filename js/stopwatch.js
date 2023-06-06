@@ -5,55 +5,55 @@ var display = document.querySelector(".timer-Display")
 var laps = document.querySelector(".laps")
 
 
-function start(){
-    if(!timer){
+function start() {
+    if (!timer) {
         timer = setInterval(run, 10)
     }
 }
 
-function run(){
+function run() {
     display.innerHTML = getTimer()
-    ms++              
-    if(ms == 100){
+    ms++
+    if (ms == 100) {
         ms = 0
         s++
     }
-    if(s == 60){
+    if (s == 60) {
         s = 0
         m++
     }
-    if(m == 60){
+    if (m == 60) {
         m = 0
         h++
     }
-    
-    if(h == 13){
+
+    if (h == 13) {
         h = 1
-    } 
+    }
 }
 
-function getTimer(){
-    return (h<10 ? "0" + h: h) + " : "
-             + (m<10 ? "0" + m : m) + " : " 
-             + (s<10 ? "0" + s : s) + " : "
-             + (ms<10 ? "0" + ms : ms); 
+function getTimer() {
+    return (h < 10 ? "0" + h : h) + " : "
+        + (m < 10 ? "0" + m : m) + " : "
+        + (s < 10 ? "0" + s : s) + " : "
+        + (ms < 10 ? "0" + ms : ms);
 }
 
 
 
-function pause(){
-    stopTimer()  
+function pause() {
+    stopTimer()
 }
 
-function stopTimer(){
+function stopTimer() {
     clearInterval(timer)
-    timer = false 
+    timer = false
 }
 
 
 
 
-function reset(){
+function reset() {
     stopTimer()
     ms = 0
     s = 0
@@ -65,24 +65,24 @@ function reset(){
 
 
 
-function restart(){
-    if(timer){ 
+function restart() {
+    if (timer) {
         reset()
         start()
     }
-    
+
 }
 
 
 // lap = taking screenshot of current time...
 function lap() {
-    if(timer) {   
-        var Li = document.createElement("li")   
-        Li.innerHTML = getTimer() 
-        laps.appendChild(Li) 
+    if (timer) {
+        var Li = document.createElement("li")
+        Li.innerHTML = getTimer()
+        laps.appendChild(Li)
     }
 }
 
-function resetLap(){
+function resetLap() {
     laps.innerHTML = ""
 }
